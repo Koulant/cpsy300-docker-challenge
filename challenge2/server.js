@@ -73,8 +73,8 @@ app.get('/api/books/:id', (req, res) => {
 
 
 
-// Start the server
-const PORT = process.env.PORT || 3000;
+// Start the server on port 8080 instead of 3000
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
