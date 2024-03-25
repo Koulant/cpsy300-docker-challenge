@@ -1,7 +1,8 @@
 # cpsy-300-docker-challenge
+This docker challenge aims to help developers develop their technical skills using containerization tools, specifically, Docker.
 
 # Introduction to repository
-This repository provides a comprehensive guide and resources for completing two Docker challenges. The challenges are designed to help users gain practical experience with Docker, a popular platform used for containerization. The repository includes detailed instructions for setting up the necessary tools, creating Dockerfiles, and running Docker containers to serve static webpages and Node.js applications. The challenges are structured to progressively increase in complexity, starting with serving a simple static webpage and moving on to orchestrating a web server and a Node.js API server using Docker compose.
+This repository provides a comprehensive guide and resources for completing two Docker challenges. The challenges are designed to help users gain practical experience with Docker, a popular platform used for containerization. The repository includes detailed instructions for setting up the necessary tools, creating Dockerfiles, and running Docker containers to serve static webpages and Node.js applications. The first challenge is to serve a simple static webpage and the second challenge is to orchestrate a web server and a Node.js API server using Docker compose.
 
 # Learning experience and findings 
 Throughout the process of completing these challenges, I came away with several key findings:
