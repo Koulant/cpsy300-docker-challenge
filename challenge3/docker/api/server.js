@@ -1,8 +1,11 @@
 
 const express = require('express');
 const fs = require('fs');
+// Require os to get the operating system information
+const os = require('os');
 // Require mysql for the database connection
 const mysql = require('mysql');
+// Require dotenv to read the environment variables from a .env file
 require('dotenv').config();
 
 const app = express();
@@ -61,6 +64,15 @@ app.get('/api/books/:id', (req, res) => {
             res.json(results[0]);
         });
     });
+});
+
+// Route to handle get hostname from the docker container
+app.get('/api/stats', (req, res) => {
+    const stats = {
+        containerHostname: os.hostname(),
+        dockerHostHostname: process.env.HOSTNAME
+    };
+    res.json(stats);
 });
 
 // Start the server on port 8080 instead of 3000
