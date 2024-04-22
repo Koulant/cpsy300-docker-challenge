@@ -7,11 +7,6 @@ require('dotenv').config();
 
 const app = express();
 
-// const fsMemoryStats = '/proc/meminfo';
-
-// const pid = process.pid;
-// const env = process.env;
-
 // Create a connection to the database using a connection pool
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -40,22 +35,33 @@ app.get('/api/books', (req, res) => {
     });
 });
 
-// app.get('/api/books', (req, res) => {
-//     res.json(books);
-// });
-
 // Route to get a specific book by ID from the database
-// TO BE IMPLEMENTED
-
-// app.get('/api/books/:id', (req, res) => {
-//     const id = parseInt(req.params.id);
-//     const book = books.find(b => b.id === id);
-//     if (!book) {
-//         res.status(404).send('Book not found');
-//         return;
-//     }
-//     res.json(book);
-// });
+app.get('/api/books/:id', (req, res) => {
+    const bookId = req.params.id; // Get the book ID from the request parameters
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error getting database connection:', err);
+            res.status(500).json({ error: 'Database error' });
+            return;
+        }
+        // Use a prepared statement to avoid SQL injection
+        const query = 'SELECT * FROM books WHERE id = ?';
+        connection.query(query, [bookId], (error, results) => {
+            connection.release(); // Release the connection back to the pool
+            if (error) {
+                console.error('Error executing query:', error);
+                res.status(500).json({ error: 'Database error' });
+                return;
+            }
+            if (results.length === 0) {
+                res.status(404).json({ error: 'Book not found' });
+                return;
+            }
+            // Return the book details as JSON response
+            res.json(results[0]);
+        });
+    });
+});
 
 // Start the server on port 8080 instead of 3000
 const PORT = process.env.PORT || 8080;
