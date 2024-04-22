@@ -1,4 +1,9 @@
-# cpsy-300-docker-challenge
+# cpsy-300-final-exam-docker-challenge
+COMPLETE CHALLENGE 3 and 4 README HERE!
+
+
+
+# cpsy-300-midterm-exam-docker-challenge
 This docker challenge aims to help developers develop their technical skills using containerization tools, specifically, Docker.
 
 # Introduction to repository
