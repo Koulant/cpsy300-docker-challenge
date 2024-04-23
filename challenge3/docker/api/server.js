@@ -1,8 +1,5 @@
-
 const express = require('express');
 const fs = require('fs');
-// Require os to get the operating system information
-const os = require('os');
 // Require mysql for the database connection
 const mysql = require('mysql');
 // Require dotenv to read the environment variables from a .env file
@@ -69,8 +66,7 @@ app.get('/api/books/:id', (req, res) => {
 // Route to handle get hostname from the docker container
 app.get('/api/stats', (req, res) => {
     const stats = {
-        containerHostname: os.hostname(),
-        dockerHostHostname: process.env.HOSTNAME
+        dockerHostname: process.env.HOSTNAME
     };
     res.json(stats);
 });
@@ -92,3 +88,4 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
+
